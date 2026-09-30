@@ -1,0 +1,55 @@
+{
+  "experiment": "C128",
+  "seeds": [
+    17,
+    43,
+    101
+  ],
+  "discovery_conditions": [
+    "mse",
+    "joint"
+  ],
+  "representations": [
+    "initial",
+    "mse",
+    "joint"
+  ],
+  "targets": [
+    "blocks_per_set",
+    "digs_per_set"
+  ],
+  "latent_dim": 32,
+  "batch": 64,
+  "lr": 0.0003,
+  "l2": 0.001,
+  "latent_l2": 0.0,
+  "dropout": 0.1,
+  "dropout_repeat": 1,
+  "cycles": 300,
+  "epochs": 300,
+  "parallel_jobs": 2,
+  "discovery_data": "AVP Men 2005-2009 complete team attack statistics, train player>=10games",
+  "reuse_data": "same tournament split, valid blocks/digs per set",
+  "source_selection": "minimum mean A/B original-unit validation MSE",
+  "predictor_selection": "minimum original-unit validation squared loss; initial included; earliest tie",
+  "latent_optimizer": "GM persistent per-player Adam; Joint persistent table Adam",
+  "schedule": "GM C74 member full-pass A then B; Joint one full-pass each side updating all inputs",
+  "reader_source_loss": "not used",
+  "reader_transfer_loss": "standardized MSE",
+  "main_claim": "point-share prediction beyond additive player effects and frozen reuse",
+  "test_policy": "test saved but not evaluated in pilot",
+  "evidence": "new tournament split exploratory pilot; validation development only",
+  "bootstrap": {
+    "replicates": 2000,
+    "unit": "tournament",
+    "seed": 1262026,
+    "ordinary_level": 0.95
+  },
+  "frozen_at": "before first training run",
+  "source_patience": 60,
+  "source_minimum": 60,
+  "reader_patience": 50,
+  "reader_minimum": 100,
+  "source_target": "team_attack_success_rate",
+  "parent_experiment": "C127"
+}

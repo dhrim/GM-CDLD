@@ -1,23 +1,39 @@
-# 자료 명세
+# Data preparation from public sources
 
-NBA 원자료는 shufinskiy/nba_data의 commit e829d4678be1e075f99e5d41a1c5f97089be446b에서 확보한 pbpstats_2023·cdnnba_2023 및 공식 boxscore 자료를 사용했다. 테니스 2017–2019 파일 URL와 획득 hash는 provenance/tennis_sources.json에 있다.
+Run notebook 01 from a fresh checkout. It downloads original source files, verifies SHA256 hashes, builds the model inputs and verifies all 186 arrays against the study's input hashes. No private research folders or previously prepared arrays are required. The committed game/row IDs are frozen split metadata, not outcome records.
 
-학습 입력은 도메인별 fit.npz/test.npz/meta.json/player_ids.npy이다. npz 필드 a,b는 각 팀 선수의 latent 행 index, context는 발견망 맥락, row_id/cluster는 분할 식별자이며 정답 이름은 protocol/plan.json의 targets를 따른다. 테니스 재사용에는 ace_rate_other/df_rate_other/service_win_rate_other도 필요하다.
+## NBA
 
-본 패키지에 준비된 정답 배열은 없다. 해당 준비 자료를 정당하게 확보한 경우 tools/stage_run.py --data 경로 --output 새폴더로 반입한다. 메타데이터와 분할 식별자는 동봉했다.
+`tools/download_sources.py --domain NBA` downloads the pinned Shufinskiy `pbpstats_2023.tar.xz` and `cdnnba_2023.tar.xz` archives and SportsDataverse's `player_boxscores_2024.parquet` (NBA Stats starters/team mapping). Exact URLs and hashes are in `provenance/nba_sources.json`.
 
-provenance/prepare_data_original.py는 실제 전처리 코드 기록이다. 이전 NBA 전처리 산출물에 의존하므로 독립 실행용 스크립트로 제시하지 않는다. 필요한 입력은 코드의 read_csv/read_parquet/tarfile 경로에 명시돼 있다. 연구자의 원본 작업 기록에 준비 배열과 그 상위 산출물이 보존돼 있다.
+`tools/prepare_nba.py` reconstructs both five-player lineups from starters and ordered substitutions, maps ordinary possession summaries to stable-lineup intervals, excludes ambiguous boundary/substitution/special-free-throw records, applies the frozen development/final game allocation, selects players using training exposure, and builds the points/assists/turnovers/offensive-rebounds labels and training-standardized context. Frozen schedule and development split files are under `data/splits/NBA/`.
 
+Expected: 425 players; 81,596 training and 18,815 final-evaluation possessions; five players per side; eight Finder context features. This is the manuscript points dataset, not the later C74 shot-success dataset. Every array, player index and scaling value was checked against the submitted-study inputs.
 
-데이터 저작권·이용 조건은 [RIGHTS.md](../RIGHTS.md)의 제공처별 조건을 따른다. 테니스 CC BY-NC-SA 4.0과 농구 저장소 Apache 2.0 표기를 구분하며 원제공자 권리도 별도로 고려한다.
+## Tennis
 
+`tools/download_tennis.py` downloads the three 2017–2019 doubles files using `provenance/tennis_sources.json`. `tools/prepare_tennis.py` implements the frozen tournament split, training-only eligibility, fixed winner-independent source orientation and paired target-team reuse labels. Expected: 153 players, 1,962 training and 460 evaluation source matches.
 
-## Current notebook support
+## Beach volleyball
 
-Tennis: notebook 01 downloads the three upstream files, verifies the archived SHA256 hashes, and runs the unchanged tennis transformation extracted from the original preparation script. Its output is work/tennis_prepared/data/tennis. Copy this directory under the main prepared input root alongside NBA/.
+`tools/download_sources.py --domain beach` downloads the five 2005–2009 BigTimeStats CSVs at the recorded commit. `tools/prepare_beach.py` rebuilds the AVP men's records, complete-statistics exclusions, tournament split and training-exposure fixed point. It generates the three source definitions published in Supplement S11: attack efficiency, point share and attack success rate. All use the same groups and downstream blocks/digs labels.
 
-NBA: supply NBA/fit.npz, test.npz, meta.json and player_ids.npy under that root. The archived preparation script requires the earlier lineup/target pipeline outputs: schedule_and_candidate_split.csv, cdn_raw.parquet, player_boxscores_2024.parquet, pbpstats_2023.tar.xz, and the two target_rows.parquet sources shown in that script. These are not included. It is not a standalone raw-data builder. Completing that upstream packaging remains a release task.
+Expected: 94 players; 2,371 training, 501 validation and 490 reserved test matches. Both team orientations are present. Test arrays are rebuilt to verify the split, but notebooks 04–05 stage only fit/validation arrays and never evaluate test outcomes.
 
-Beach volleyball: supply source/ and reuse/, each containing fit.npz, val.npz and meta.json. Test files are not staged by notebook 04. The archived preparation chain depends on previous split construction; it remains a release task. See extensions/beach_volleyball/source_manifest.json for upstream sources.
+## Commands and verification
 
-The published data/ folder contains only split identifiers, player IDs and metadata, not outcome arrays. Do not rename a later C74 or shot-success dataset to stand in for the manuscript NBA points data.
+Notebook 01 runs these commands and stages the resulting data for later notebooks:
+
+```sh
+python tools/download_sources.py --domain NBA --output work/raw/NBA
+python tools/download_sources.py --domain beach --output work/raw/beach
+python tools/download_tennis.py --output work/raw/tennis
+python tools/prepare_nba.py --raw work/raw/NBA --output work/raw_build/NBA
+python tools/prepare_tennis.py --raw work/raw/tennis --output work/raw_build/tennis
+python tools/prepare_beach.py --raw work/raw/beach --output work/raw_build/beach
+python tools/verify_inputs.py --build work/raw_build
+```
+
+Builders require new output directories; do not overwrite completed runs. Downloads may reuse only hash-matching cached raw files. If a provider removes or changes a pinned file, the downloader fails explicitly. An exact archived copy can be placed at the documented raw path; the same hash check applies. No silent replacement or changed split is used.
+
+Array fingerprints include dtype, shape and content bytes. The verification manifest contains no raw observations or labels. Prepared arrays, checkpoints and predictions stay in ignored `work/`. Original provider terms remain applicable; see [RIGHTS.md](../RIGHTS.md). `provenance/prepare_data_original.py` is the historical preparation snapshot, not the public entry point.

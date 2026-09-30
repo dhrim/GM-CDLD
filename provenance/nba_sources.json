@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "name": "pbpstats_2023.tar.xz",
+      "url": "https://raw.githubusercontent.com/shufinskiy/nba_data/e829d4678be1e075f99e5d41a1c5f97089be446b/datasets/pbpstats_2023.tar.xz",
+      "sha256": "c4eff1692da05ec83094a056aa8d773fe7965f3d0aa7c01d1b3dd5f50a0e3fe8"
+    },
+    {
+      "name": "cdnnba_2023.tar.xz",
+      "url": "https://raw.githubusercontent.com/shufinskiy/nba_data/e829d4678be1e075f99e5d41a1c5f97089be446b/datasets/cdnnba_2023.tar.xz",
+      "sha256": "33d49fefc809f73d5d6cbad6d1d6690e0df6c89fe2b5a4d814ecc9ea4df6101b"
+    },
+    {
+      "name": "player_boxscores_2024.parquet",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/nba_stats_player_boxscores/player_boxscores_2024.parquet",
+      "sha256": "2ed43e1d2b54a232e730a612c308aab9adc771990d1dcabafe59fdfa932af1fd"
+    }
+  ]
+}

@@ -9,4 +9,4 @@
 - Supplementary output-readout variant: internal C39 branch, same original implementation.
 - Beach volleyball: separate extensions/beach_volleyball code and notebook 04; validation-selected persistent member Adam protocol, not main-manuscript C42.
 
-Verified in this update: source file hash against archived execution, loss branches, regularization operands, optimizer reset, update variables. This is not yet a final numerical reconciliation of all reported tables.
+Verified in this update: source file hash against archived execution, loss branches, regularization operands, optimizer reset, update variables. The completed main execution matches the archived manuscript results. Raw-data builders verify all 186 input arrays; supplementary notebook 05 covers the remaining beach comparisons.
