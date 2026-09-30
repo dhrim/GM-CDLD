@@ -1,0 +1,18 @@
+{
+  "main/NBA/fit.npz": "8efa349f0bcef517f20acbd2f58f62ae393a51e3a6892bf2ac1116249e739d40",
+  "main/NBA/test.npz": "0a058e82b468528ba7f2a30dd678ed6368c1ccfdf4b0c5a03f9bd9d817cd25a0",
+  "main/NBA/player_ids.npy": "cda1ef77c4b9a4e92d2cdb79297ea7381ef6532304386876834d158b4fa36fc7",
+  "main/NBA/meta.json": "e6c139b457f7edda48bc4c28d3164555b47c5107d0d35766d8a5aa5ab2e0d7ab",
+  "main/tennis/fit.npz": "ba95d7f70ed080a476dab7f812a10c027e3c51da73d12328f37692cc8ef2767f",
+  "main/tennis/test.npz": "c7a67f7cdd9d7ec25ef61e8c8b2c81ef91a3dc7ec5dd867a5c07f364263ff060",
+  "main/tennis/player_ids.npy": "fd776be5b1673f26d3c579d9f51ce5d29ae9a723c62e34919410d5ab72a1ed6d",
+  "main/tennis/meta.json": "929128cf0bda65f0ef9ed23a2855152721b9f7a1dcb1fef452ced9d538dfb2f2",
+  "beach/reuse/fit.npz": "357a578c281009f67b086293c9df89e128397cba267baad91e3e7312124a16b9",
+  "beach/reuse/test.npz": "116f959c37ef4ccd20f2ba805ac13f75f173903968bb50ec5f912e320b4e87bf",
+  "beach/reuse/val.npz": "c1710e0a74133a30785dd96d4bda815425e06d0835ee9adaaf53c849b5a72a87",
+  "beach/reuse/meta.json": "a5bc01114d994612c23bc5d85641d07b87fff34f156dde495c27f8d79e2f2cd2",
+  "beach/source/fit.npz": "357a578c281009f67b086293c9df89e128397cba267baad91e3e7312124a16b9",
+  "beach/source/test.npz": "116f959c37ef4ccd20f2ba805ac13f75f173903968bb50ec5f912e320b4e87bf",
+  "beach/source/val.npz": "c1710e0a74133a30785dd96d4bda815425e06d0835ee9adaaf53c849b5a72a87",
+  "beach/source/meta.json": "a5bc01114d994612c23bc5d85641d07b87fff34f156dde495c27f8d79e2f2cd2"
+}

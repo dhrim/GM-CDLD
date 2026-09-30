@@ -1,0 +1,47 @@
+{
+  "domain": "tennis",
+  "players": 153,
+  "slots": 2,
+  "context_dim": 5,
+  "targets": [
+    "win",
+    "ace_rate",
+    "df_rate",
+    "service_win_rate"
+  ],
+  "classification": true,
+  "scaling": {
+    "win": {
+      "mean": 0.0,
+      "std": 1.0
+    },
+    "ace_rate": {
+      "mean": 0.05845959112048149,
+      "std": 0.04063441976904869
+    },
+    "df_rate": {
+      "mean": 0.04020879790186882,
+      "std": 0.027210434898734093
+    },
+    "service_win_rate": {
+      "mean": 0.6740919351577759,
+      "std": 0.07844828814268112
+    }
+  },
+  "fit_rows": 1962,
+  "test_rows": 460,
+  "finite_target_rows": {
+    "fit": {
+      "win": 1962,
+      "ace_rate": 1884,
+      "df_rate": 1884,
+      "service_win_rate": 1884
+    },
+    "test": {
+      "win": 460,
+      "ace_rate": 460,
+      "df_rate": 460,
+      "service_win_rate": 460
+    }
+  }
+}

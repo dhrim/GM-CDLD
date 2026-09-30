@@ -1,0 +1,20 @@
+[
+  {
+    "file": "atp_matches_doubles_2017.csv",
+    "url": "https://raw.githubusercontent.com/azhou5849/tennis-atp-sackmann-data/master/atp_matches_doubles_2017.csv",
+    "bytes": 452497,
+    "sha256": "31270b684750c067fc5c9bd93c575b63b0099ac2fbb77ae66fec625278c79a1c"
+  },
+  {
+    "file": "atp_matches_doubles_2018.csv",
+    "url": "https://raw.githubusercontent.com/azhou5849/tennis-atp-sackmann-data/master/atp_matches_doubles_2018.csv",
+    "bytes": 442785,
+    "sha256": "e9ffc46fae12d044c61e51ba841d9ea3e63c7b3df978a4db364d0d424fe97f20"
+  },
+  {
+    "file": "atp_matches_doubles_2019.csv",
+    "url": "https://raw.githubusercontent.com/azhou5849/tennis-atp-sackmann-data/master/atp_matches_doubles_2019.csv",
+    "bytes": 461811,
+    "sha256": "fbca505a034e276a84d6cd8ba4f74cb99862b1bc41d0daa33d5c55b6466e707c"
+  }
+]

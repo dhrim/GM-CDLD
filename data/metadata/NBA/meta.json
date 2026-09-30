@@ -1,0 +1,47 @@
+{
+  "domain": "NBA",
+  "players": 425,
+  "slots": 5,
+  "context_dim": 8,
+  "targets": [
+    "points",
+    "assists",
+    "turnovers",
+    "offensive_rebounds"
+  ],
+  "classification": false,
+  "scaling": {
+    "points": {
+      "mean": 1.149725476739056,
+      "std": 1.1979534438710546
+    },
+    "assists": {
+      "mean": 0.28378842100102947,
+      "std": 0.450944117522934
+    },
+    "turnovers": {
+      "mean": 0.12918525417912644,
+      "std": 0.3354048662166381
+    },
+    "offensive_rebounds": {
+      "mean": 0.12267758223442325,
+      "std": 0.38140894778849627
+    }
+  },
+  "fit_rows": 81596,
+  "test_rows": 18815,
+  "finite_target_rows": {
+    "fit": {
+      "points": 81596,
+      "assists": 81596,
+      "turnovers": 81596,
+      "offensive_rebounds": 81596
+    },
+    "test": {
+      "points": 18815,
+      "assists": 18815,
+      "turnovers": 18815,
+      "offensive_rebounds": 18815
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "elapsed_minutes_at_start": {
+    "mean": 22.8250526986617,
+    "std": 13.932697423663544
+  },
+  "score_difference_at_start": {
+    "mean": -0.515319378400902,
+    "std": 11.200369634512768
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "frozen_at": "2026-09-22T07:38:02.284637+00:00",
+  "seeds": [
+    17,
+    43,
+    97
+  ],
+  "domains": [
+    "NBA",
+    "tennis"
+  ],
+  "conditions": [
+    "direct",
+    "C39"
+  ],
+  "cycles": 20,
+  "epochs": 20,
+  "latent_dim": 32,
+  "batch": 64,
+  "lr": 0.0003,
+  "l2": 0.001,
+  "head": [
+    64,
+    16
+  ],
+  "row_adam": "reset each visit",
+  "finder_adam": "persistent independent A/B",
+  "initial_latent": "new seed-specific Glorot uniform shared across conditions",
+  "selection": "fit game count >=10 NBA/>=20 tennis, one pass filtering, retain only all-member-eligible rows; training-unobserved members excluded from final evaluation",
+  "NBA": {
+    "fit": "existing C31 fit, not D validation",
+    "development": "existing validation not final",
+    "final": "existing E games 2024-03-14 through 2024-04-14",
+    "targets": [
+      "points",
+      "assists",
+      "turnovers",
+      "offensive_rebounds"
+    ],
+    "context": "existing home/period/start elapsed/start differential; fit scaling",
+    "source_loss": "MSE on fit standardized points",
+    "weight": 1
+  },
+  "tennis": {
+    "years": [
+      2017,
+      2018,
+      2019
+    ],
+    "split": "sorted tourney_id shuffled Python Random(17), round(20% groups) test; already inventoried split unchanged",
+    "orientation_seed": 4201,
+    "context": [
+      "Hard",
+      "Clay",
+      "Grass",
+      "Carpet",
+      "Unknown"
+    ],
+    "targets": [
+      "win",
+      "ace_rate",
+      "df_rate",
+      "service_win_rate"
+    ],
+    "source_loss": "BCE logits",
+    "reuse": "team-game equal weight; both directions kept together; svpt>0 and all three rate definitions finite",
+    "rates": {
+      "ace_rate": "ace/svpt",
+      "df_rate": "df/svpt",
+      "service_win_rate": "(1stWon+2ndWon)/svpt"
+    },
+    "completed": "nonempty score without RET/W/O/DEF/ABD; no numeric ability filtering"
+  },
+  "source_primary": "cycle20, no early stopping; fit trajectories only; no final test until all training tasks complete",
+  "predictor": "fixed latent only,64->16->1,20epoch,L2 kernels,source and three other outputs independently",
+  "baseline": {
+    "context": false,
+    "ridge": "raw role-separated 0/1 ID, intercept, mean MSE + .01 sum(coef²)",
+    "logistic": "raw role-separated 0/1 ID, intercept, mean BCE + .01 sum(coef²)",
+    "selection": "fixed .01, no test tuning"
+  },
+  "perturbation": "final predictor all-zero and fixed row shuffle, source Finders also stored separately",
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 4202,
+    "unit": {
+      "NBA": "game",
+      "tennis": "tournament occurrence"
+    },
+    "paired": "same sampled clusters across conditions and all three seeds; CI of mean paired loss differences",
+    "scope": "evaluation-cluster uncertainty conditional on fitted models"
+  },
+  "numeric": "float32, no mixed precision/TF32, deterministic ops where supported",
+  "no_extra_tuning": true,
+  "test_policy": "no final metric before global train_complete marker; target preparation not performance evaluation"
+}
