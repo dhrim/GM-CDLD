@@ -31,4 +31,4 @@ The default primary workflow uses seeds 17/43/97 and the manuscript's fixed 20-c
 
 Raw outcomes and prepared label arrays are not redistributed. Tennis preparation is included with archived source-hash checks. NBA and beach-volleyball currently require prepared input arrays; their upstream preparation packaging is not yet standalone. See the data guide before attempting those experiments.
 
-This repository contains executable code, not the manuscript or internal research notes. The manuscript was submitted to Applied Intelligence on 30 September 2026. Notebooks are distributed without stored execution outputs. The standalone data-preparation limitations for NBA and beach volleyball are documented above.
+This repository contains executable code, not the manuscript or internal research notes. The manuscript was submitted to Applied Intelligence on 30 September 2026. All four notebooks include genuine execution outputs from 30 September 2026 (60 NBA/tennis training jobs, including the supplementary C39 variant, and 9 beach-volleyball jobs). The standalone data-preparation limitations for NBA and beach volleyball are documented above.
