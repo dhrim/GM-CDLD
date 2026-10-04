@@ -2,8 +2,6 @@
 
 Reproducible code for discovering member latent values from group outcomes and reusing the fixed values to predict other outcomes.
 
-## Graphical abstract
-
 ![GM-CDLD: group observations, member-level discovery, and frozen-latent reuse](docs/graphical_abstract/GM-CDLD_graphical_abstract_v1.png)
 
 [Vector image (SVG)](docs/graphical_abstract/GM-CDLD_graphical_abstract_v1.svg) · [Python source](docs/graphical_abstract/draw_graphical_abstract.py)
