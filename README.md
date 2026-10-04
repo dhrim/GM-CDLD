@@ -2,6 +2,20 @@
 
 Reproducible code for discovering member latent values from group outcomes and reusing the fixed values to predict other outcomes.
 
+## Graphical abstract
+
+![GM-CDLD: group observations, member-level discovery, and frozen-latent reuse](docs/graphical_abstract/GM-CDLD_graphical_abstract_v1.png)
+
+[Vector image (SVG)](docs/graphical_abstract/GM-CDLD_graphical_abstract_v1.svg) · [Python source](docs/graphical_abstract/draw_graphical_abstract.py)
+
+The matches and vector colors are schematic. The diagram summarizes memberwise discovery and evaluation with separate predictors; the bottom panel states the observed performance scope.
+
+To regenerate the images, install `matplotlib` and run:
+
+```sh
+python docs/graphical_abstract/draw_graphical_abstract.py
+```
+
 ## Run
 
 Use Python 3.10+ on Linux/macOS:
